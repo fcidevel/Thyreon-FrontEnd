@@ -1,0 +1,42 @@
+#!/bin/sh
+# Blocks a push when any commit being pushed contains a secret. Mandatory - see
+# README.md "Secret scanning (mandatory)". Second line of defence after
+# pre-commit: it also catches commits that were made with `git commit --no-verify`.
+#
+# Enabled together with pre-commit (core.hooksPath=.githooks; `npm install` sets
+# it through the "prepare" script). Never bypass it with --no-verify.
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-push: gitleaks is not on PATH, so the secret scan cannot run." >&2
+  echo "  Install it: winget install Gitleaks.Gitleaks  |  brew install gitleaks" >&2
+  exit 1
+fi
+
+remote="$1"
+status=0
+
+is_zero() { case "$1" in *[!0]*) return 1 ;; *) return 0 ;; esac; }
+
+# git feeds one line per ref being pushed: <local ref> <local sha> <remote ref> <remote sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+  is_zero "$local_sha" && continue  # deleting a remote branch: nothing to scan
+
+  if ! is_zero "$remote_sha" && git cat-file -e "${remote_sha}^{commit}" 2>/dev/null; then
+    range="${remote_sha}..${local_sha}"
+  else
+    # New branch, or the remote tip is not known locally: scan every commit
+    # that is not already on the remote.
+    range="${local_sha} --not --remotes=${remote}"
+  fi
+
+  echo "pre-push: scanning ${local_ref} -> ${remote_ref}"
+  # </dev/null keeps gitleaks from consuming the remaining ref lines on stdin.
+  if ! gitleaks git --log-opts="$range" --redact --verbose --no-banner </dev/null; then
+    status=1
+  fi
+done
+
+if [ "$status" -ne 0 ]; then
+  echo "pre-push: push blocked - remove the secret from the commits above (rewrite them), then push again." >&2
+fi
+exit $status

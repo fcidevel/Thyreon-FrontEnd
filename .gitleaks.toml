@@ -1,0 +1,56 @@
+# Gitleaks configuration for Thyreon (front-end).
+# Picked up automatically from the repo root by `gitleaks git .` and `gitleaks dir .`,
+# by the pre-commit and pre-push hooks in .githooks/ and by
+# .github/workflows/gitleaks.yml. Secret scanning is mandatory - see the
+# "Secret scanning (mandatory)" section of README.md.
+#
+# Docs: https://github.com/gitleaks/gitleaks#configuration
+
+title = "Thyreon front-end gitleaks config"
+
+# The [[allowlists]] syntax below needs gitleaks v8.25.0 or newer.
+minVersion = "v8.25.0"
+
+# Keep every built-in rule; the entries below only add to them.
+[extend]
+useDefault = true
+
+# Webhook signing secrets issued by the services this project integrates with:
+# Clerk (Svix, "whsec_" + base64) and Stripe ("whsec_" + alphanumerics). The
+# built-in generic-api-key rule only catches them next to a keyword such as
+# "secret"; this catches them anywhere. Base64 may end in "=" padding, so the
+# match ends on a delimiter outside the secret group instead of on \b.
+[[rules]]
+id = "webhook-signing-secret"
+description = "Webhook signing secret (Stripe, Svix / Clerk)"
+regex = '''\b(whsec_[A-Za-z0-9+/]{24,128}={0,2})(?:[^A-Za-z0-9+/=]|$)'''
+secretGroup = 1
+entropy = 3.5
+keywords = ["whsec_"]
+tags = ["stripe", "svix", "clerk", "webhook"]
+
+# Context7 API keys ("ctx7sk-" + a UUID), carried by the MCP server configuration
+# of development tooling (for example .mcp.json or .vscode/mcp.json). No built-in
+# rule covers them; generic-api-key only catches them next to a keyword. The
+# entropy threshold skips all-zero and repeated-character placeholders.
+[[rules]]
+id = "context7-api-key"
+description = "Context7 API key"
+regex = '''\b(ctx7sk-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\b'''
+secretGroup = 1
+entropy = 3.3
+keywords = ["ctx7sk"]
+tags = ["context7", "mcp", "api-key"]
+
+# Next.js build output. Without this, `gitleaks dir .` reports Next.js's own
+# per-build keys under .next/ (previewModeSigningKey, previewModeEncryptionKey,
+# Server Action encryptionKey) and other build artefacts. node_modules/ needs no
+# entry: gitleaks' built-in allowlist already skips it.
+# Note: global allowlists apply in EVERY mode (dir, git, pre-commit hook, CI), so
+# this path is also exempt there. Keep the list to folders that are never
+# committed; never add .env* or .vercel/ (`vercel pull` writes real secrets there).
+[[allowlists]]
+description = "Next.js build output (gitignored)"
+paths = [
+  '''(^|[\\/])\.next([\\/]|$)''',
+]

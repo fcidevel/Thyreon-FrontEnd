@@ -1,0 +1,18 @@
+#!/bin/sh
+# Blocks a commit when the staged changes contain a secret. Mandatory - see
+# README.md "Secret scanning (mandatory)". .githooks/pre-push re-checks every
+# pushed commit.
+#
+# Enabled per clone by:    npm install  (the "prepare" script), or
+#                          git config core.hooksPath .githooks
+# Never bypass it:         no --no-verify
+# Mark a false positive:   after review and approval, add  gitleaks:allow  as a
+#                          comment on that line, or put its fingerprint in .gitleaksignore
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not on PATH, so the secret scan cannot run." >&2
+  echo "  Install it: winget install Gitleaks.Gitleaks  |  brew install gitleaks" >&2
+  exit 1
+fi
+
+exec gitleaks git --pre-commit --staged --redact --verbose --no-banner
