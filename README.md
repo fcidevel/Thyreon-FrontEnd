@@ -86,4 +86,18 @@ This is the front-end application for the Thyreon platform, providing:
 
 ---
 
-**Built by [JordacheWD](https://jordachewd.com)**
+## Author
+
+Built with ❤️ by [FCI Devel](https://fcidevel.com)
+
+---
+
+## License
+
+Source-available, not open source. The code is public so that prospective clients,
+partners and employers can review how FCI Devel builds software: you may read it, and
+clone and run it on your own devices for that review, but you may not reuse it.
+Contributions are not accepted, and security issues are reported privately as the
+licence describes.
+
+See [LICENSE](LICENSE) for the full terms.

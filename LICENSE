@@ -1,0 +1,143 @@
+FCI Devel Reference Licence, version 1.0.0
+Effective 25 November 2026
+
+Copyright (c) 2026 FCI DEVELOPMENT SRL, trading as FCI Devel.
+All rights reserved.
+
+FCI DEVELOPMENT SRL, Str. Drumul Pădurea Neagră 19-85, Sector 1,
+014044 Bucharest, Romania. Trade Register J2016004566408.
+CUI / EU VAT RO35873644. office@fcidevel.com · https://fcidevel.com
+
+This repository is public so that prospective clients, partners and
+employers can see how FCI Devel builds software. It is source-available,
+not open source. You may read it; you may not reuse it.
+
+
+1. DEFINITIONS
+
+"Software" means everything in this repository (source code,
+documentation, configuration, designs, images and other material), in any
+version, copy or part, except Third-Party Components.
+
+"Third-Party Components" means material owned by others and included under
+its own licence, such as dependencies, fonts and icons. Their own licences
+apply to them, not this one.
+
+"We", "us" and "Owner" mean FCI DEVELOPMENT SRL. "You" means any person or
+organisation that accesses the Software.
+
+"Review" means assessing the Owner's skills, methods and work, for example
+before hiring or contracting the Owner.
+
+
+2. WHAT YOU MAY DO
+
+2.1 View the Software, and clone or download a copy to your own devices.
+
+2.2 Build and run the Software on your own devices, for Review only.
+
+2.3 Quote short excerpts in a review, discussion or report about the
+    Software, with the credit "(c) FCI Devel" and a link to this
+    repository.
+
+Keep your copy only for as long as you need it for Review.
+
+
+3. WHAT YOU MAY NOT DO WITHOUT OUR WRITTEN PERMISSION
+
+(a) Use the Software, or any part of it, for any purpose other than
+    Review, including in production, in another product or service, in
+    client work or for internal business use.
+
+(b) Modify, adapt or translate the Software, or build other work on it,
+    except temporary changes needed to run it locally under 2.2.
+
+(c) Publish, distribute, sublicense, sell, rent, lend or host the Software
+    or any part of it, or make it available to others in any way, including
+    as an online service.
+
+(d) Use the Software to train, fine-tune, test or improve any artificial
+    intelligence or machine-learning model, or include it in a dataset for
+    that purpose.
+
+(e) Remove or change this licence, copyright notices or credits.
+
+(f) Use the names FCI Devel or FCI Development, our logos, or the names of
+    the products in this repository in a way that suggests we endorse you
+    or work with you.
+
+(g) Use any key, token, password, endpoint or account that appears in the
+    Software, or test, scan or attack any system it connects to. Their
+    presence in the code is not permission to use them. Please report them
+    to office@fcidevel.com.
+
+
+4. TEXT AND DATA MINING
+
+We expressly reserve the use of the Software for text and data mining,
+including for training AI models, under Article 4(3) of Directive (EU)
+2019/790 and Romanian Law no. 8/1996 on copyright and related rights, as
+amended by Law no. 69/2022.
+
+
+5. GITHUB AND OTHER HOSTING PLATFORMS
+
+Where the Software is hosted on GitHub or another platform, that platform's
+terms may give the platform, its affiliates and its users certain rights
+over public repositories (for example, viewing and forking within the
+platform). This licence does not take those rights away. Beyond them, this
+licence applies in full, including to forks and to any copy made from a
+fork.
+
+
+6. CONTRIBUTIONS
+
+We do not accept contributions. Pull requests not agreed in writing
+beforehand will be closed without being merged. You are welcome to report
+bugs. Report security issues privately to office@fcidevel.com, not in a
+public issue.
+
+
+7. RIGHTS THE LAW GIVES YOU
+
+Nothing in this licence restricts what the law allows you to do without
+our permission (for example, quotation, or observing, studying and testing
+how a program works), or any right you have under mandatory law.
+
+
+8. NO WARRANTY
+
+The Software is provided "as is", for Review only, without warranty of any
+kind, express or implied, including any warranty of merchantability,
+fitness for a particular purpose or non-infringement. It may be incomplete
+or out of date, and may contain bugs or security vulnerabilities. Do not
+deploy it.
+
+
+9. LIABILITY
+
+As far as the law allows, we are not liable for any loss or damage arising
+from your access to or use of the Software. This does not exclude or limit
+liability for intent or gross negligence (Romanian Civil Code, Art. 1355),
+or any other liability that cannot be excluded by law.
+
+
+10. END OF PERMISSION
+
+Your permission under section 2 ends automatically if you breach this
+licence. You must then stop using the Software and delete all copies. We
+may publish a new version of this licence in this repository; the new
+version applies to copies made after it is published.
+
+
+11. LAW AND COURTS
+
+This licence is governed by Romanian law. Disputes go to the competent
+courts of Bucharest, Romania. If any part of this licence is held invalid,
+the rest remains in force.
+
+
+12. PERMISSIONS
+
+Any right not expressly granted in this licence is reserved. To ask for a
+commercial licence or any other permission, write to office@fcidevel.com.
